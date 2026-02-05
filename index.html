@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Savoureux - Restaurant Traditionnel</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+        
+        /* Navigation */
+        nav {
+            background: #2c3e50;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: #667eea;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f8f9fa" width="1200" height="600"/><circle fill="%23667eea" opacity="0.1" cx="200" cy="150" r="150"/><circle fill="%23764ba2" opacity="0.1" cx="1000" cy="400" r="200"/></svg>');
+            background-size: cover;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            color: #555;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+        
+        section {
+            margin-bottom: 4rem;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #2c3e50;
+        }
+        
+        /* Menu Grid */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .menu-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .menu-item h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .menu-item .price {
+            color: #764ba2;
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin: 1rem 0;
+        }
+        
+        .menu-item p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        /* About Section */
+        .about {
+            background: #f8f9fa;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .about p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            color: #555;
+            line-height: 1.8;
+        }
+        
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+            font-weight: bold;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        footer p {
+            margin-bottom: 1rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: #667eea;
+        }
+        
+        /* Map */
+        .map-container {
+            margin-top: 2rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🍽️ Le Savoureux</h1>
+        <p>Cuisine traditionnelle avec passion</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#menu">Notre Menu</a></li>
+            <li><a href="#about">À Propos</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <div class="hero" id="accueil">
+        <h2>Bienvenue dans notre univers culinaire</h2>
+        <p>Découvrez des saveurs authentiques préparées avec amour et des ingrédients frais de qualité</p>
+        <a href="#menu" class="btn">Découvrir notre menu</a>
+    </div>
+    
+    <div class="container">
+        <section id="menu">
+            <h2>Notre Menu</h2>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <h3>🥗 Salade César</h3>
+                    <p class="price">12€</p>
+                    <p>Laitue croquante, poulet grillé, parmesan, croûtons maison et notre sauce César signature</p>
+                </div>
+                
+                <div class="menu-item">
+                    <h3>🍝 Pâtes Carbonara</h3>
+                    <p class="price">15€</p>
+                    <p>Spaghetti al dente, lardons fumés, crème fraîche, parmesan et jaune d'œuf coulant</p>
+                </div>
+                
+                <div class="menu-item">
+                    <h3>🥩 Entrecôte Grillée</h3>
+                    <p class="price">24€</p>
+                    <p>250g de viande tendre, accompagnée de frites maison et légumes de saison grillés</p>
+                </div>
+                
+                <div class="menu-item">
+                    <h3>🐟 Saumon Atlantique</h3>
+                    <p class="price">22€</p>
+                    <p>Filet de saumon grillé, risotto crémeux aux champignons et sauce citron-aneth</p>
+                </div>
+                
+                <div class="menu-item">
+                    <h3>🍰 Tiramisu Maison</h3>
+                    <p class="price">8€</p>
+                    <p>Le classique italien revisité avec mascarpone onctueux et café corsé</p>
+                </div>
+                
+                <div class="menu-item">
+                    <h3>🍫 Fondant au Chocolat</h3>
+                    <p class="price">9€</p>
+                    <p>Cœur coulant, glace vanille bourbon et coulis de fruits rouges</p>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <div class="about" id="about">
+        <div class="container">
+            <h2>Notre Histoire</h2>
+            <p>
+                Depuis 2015, Le Savoureux célèbre la gastronomie traditionnelle avec une touche moderne. 
+                Notre chef passionné sélectionne rigoureusement les meilleurs produits locaux pour vous 
+                offrir une expérience culinaire inoubliable. Chaque plat est préparé avec amour et 
+                savoir-faire, dans le respect des traditions culinaires ancestrales.
+            </p>
+        </div>
+    </div>
+    
+    <div class="container">
+        <section id="contact">
+            <h2>Réservez votre table</h2>
+            <form class="contact-form" action="#" method="post">
+                <div class="form-group">
+                    <label for="nom">Nom complet</label>
+                    <input type="text" id="nom" name="nom" required placeholder="Jean Dupont">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required placeholder="jean.dupont@email.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="telephone">Téléphone</label>
+                    <input type="tel" id="telephone" name="telephone" required placeholder="+261 34 00 000 00">
+                </div>
+                
+                <div class="form-group">
+                    <label for="date">Date souhaitée</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="personnes">Nombre de personnes</label>
+                    <input type="number" id="personnes" name="personnes" min="1" max="20" required placeholder="2">
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Message (optionnel)</label>
+                    <textarea id="message" name="message" placeholder="Demandes spéciales, allergies..."></textarea>
+                </div>
+                
+                <button type="submit" class="btn">Réserver maintenant</button>
+            </form>
+            
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3774.2158087455726!2d47.52168931490283!3d-18.91368598715986!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x21f07e4e89e0bd1f%3A0x3c9b8b7d1f9b8c7e!2sAntananarivo%2C%20Madagascar!5e0!3m2!1sen!2s!4v1234567890123!5m2!1sen!2s" 
+                    width="100%" 
+                    height="400" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy">
+                </iframe>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <p><strong>Le Savoureux</strong> - Restaurant Traditionnel</p>
+        <p>📍 Avenue de l'Indépendance, Antananarivo, Madagascar</p>
+        <p>📞 +261 34 00 000 00 | ✉️ contact@lesavoureux.mg</p>
+        <p>🕐 Ouvert du mardi au dimanche, 12h-14h30 et 19h-22h30</p>
+        <div class="social-links">
+            <a href="#" title="Facebook">📘</a>
+            <a href="#" title="Instagram">📷</a>
+            <a href="#" title="TikTok">🎵</a>
+        </div>
+        <p style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.8;">
+            © 2025 Le Savoureux - Site créé par [Votre Nom] - Développeur Web Freelance
+        </p>
+    </footer>
+</body>
+</html>
